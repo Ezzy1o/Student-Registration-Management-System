@@ -1,7 +1,7 @@
 # Mini Project SEM 3 Web Programming
-Arif Haziq
-Azim
-Aeman Izzuddin
+- Arif Haziq
+- Azim
+- Aeman Izzuddin
 
 # About Project
 
