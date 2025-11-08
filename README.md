@@ -1,4 +1,4 @@
-# PBL SEM3 Web Programming
+# Mini Project SEM 3 Web Programming
 Arif Haziq
 Azim
 Aeman Izzuddin
