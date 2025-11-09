@@ -1,6 +1,6 @@
 <?php
 $servername = '127.0.0.1';
-$dbname = 'studentsystem';
+$dbname = 'studentsytem';
 $username = 'root';
 $password = '';
 
@@ -41,14 +41,6 @@ function register($fullname, $username, $email, $password) {
     }
     return true;
 }
-
-function addStudent($first_name, $last_name, $student_id, $email, $phone, $date_of_birth, $program_id, $year, $emergency_name, $emergency_phone, $requirements, $additional_notes, $photo) {
-    global $conn;
-    $sql = "INSERT INTO students (first_name, last_name, student_id, email, phone, date_of_birth, program_id, year, emergency_name, emergency_phone, requirements, additional_notes, photo) VALUES ('$first_name', '$last_name', '$student_id', '$email', '$phone', '$date_of_birth', '$program_id', '$year', '$emergency_name', '$emergency_phone', '$requirements', '$additional_notes', '$photo')";
-    $result = $conn->query($sql);
-    return $result;
-}
-
 
 function getAllStudents(){
     global $conn;
