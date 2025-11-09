@@ -1,6 +1,6 @@
 <?php
 $servername = '127.0.0.1';
-$dbname = 'new_student';
+$dbname = 'studentsystem';
 $username = 'root';
 $password = '';
 
@@ -115,3 +115,4 @@ function deleteProgram($id){
 
 
 ?>
+
