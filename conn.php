@@ -58,41 +58,24 @@ function getAllStudents(){
 }
 
 
-function searchStudentByQuery($query){
+function searchStudentByQuery($query) {
     global $conn;
     $query = trim($query);
-    $likeQuery = "%$query%";
-
-    $columns = [
-        'first_name', 'last_name', 'student_id', 'email', 'phone',
-        'date_of_birth', 'program_id', 'year', 'emergency_name',
-        'emergency_phone', 'requirements', 'additional_notes', 'photo'
-    ];
-
-    $terms = preg_split('/\s+/', $query, -1, PREG_SPLIT_NO_EMPTY);
-    $fullNameCondition = "CONCAT(first_name,' ',last_name) LIKE '$likeQuery'";
-    
-    if(count($terms) >= 2){
-        $firstTerm = "%".$terms[0]."%";
-        $lastTerm  = "%".$terms[count($terms)-1]."%";
-        $fullNameCondition .= " OR (first_name LIKE '$firstTerm' AND last_name LIKE '$lastTerm')";
-    }
-
-    $likeConditions = array_map(function($col) use ($likeQuery){
-        return "$col LIKE '$likeQuery'";
-    }, $columns);
-
-    $where = $fullNameCondition . " OR " . implode(" OR ", $likeConditions);
+    $query = mysqli_real_escape_string($conn, $query);
+    $like = "%$query%";
 
     $sql = "SELECT students.*, programs.name AS program_name
             FROM students
             LEFT JOIN programs ON students.program_id = programs.id
-            WHERE $where";
+            WHERE student_id LIKE '$like'
+            OR first_name LIKE '$like'
+            OR last_name LIKE '$like'
+            OR CONCAT(first_name, ' ', last_name) LIKE '$like'
+            OR programs.name LIKE '$like'";
 
     $result = $conn->query($sql);
     return $result->fetch_all(MYSQLI_ASSOC);
 }
-
 
 function getAllPrograms(){
     global $conn;
